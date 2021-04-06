@@ -8,9 +8,81 @@ using Catch::Matchers::Equals;
 
 // Fix the following class
 class Complex {
-    void operator>>(std::string&) const;
-    void operator<<(const std::string&);
+  public:
+  Complex() {
+    this->re = 0;
+    this->im = 0;
+  }
+  Complex(int re, int im) {
+    this->re = re;
+    this->im = im;
+
+  }
+  int getRE() {
+    return re;
+  }
+  int getIM() {
+    return im;
+  }
+   private: 
+  int re, im;
 };
+  
+  
+  void operator>>(std::string& s) const
+
+  {
+     s.append(std::to_string(this->re));
+        if (this->im > 0)
+        {
+                s.append("+");
+                
+        }
+         s.append(std::to_string(this->im));
+        s.append("i");
+        }
+
+  void operator<<(const std::string& s);
+  {
+     if (s[0] == '-')
+        {
+                int re = s[1] - '0';
+                this->re = -1 * re;
+
+        }
+        else
+        {
+                this->re = s[0] - '0'; //converting char to int;
+        }
+
+        int ipos = s.find("i");
+        int bpos = ipos - 1;
+        int bsignpos = ipos - 2;
+        if (s[bsignpos] == '-')
+        {
+                this->im = -1 * (s[bpos] - '0');
+        }
+        else
+        {
+                this->im = s[bpos] - '0';
+        }
+  }
+  
+#include <iostream>
+#include "catch.hpp"
+
+int main()
+{
+    Complex c;
+    std::cout << c.re() << c.re() << std::endl;
+    std::string s = "-1-1i";
+    c << s;
+    std::cout << c.re() << c.re()<<std::endl;
+    std::string s2 = "";
+    c >> s2;
+    std::cout << s2 << std::endl;
+}
+
 
 //------------------------------
 //   DO NOT MODIFY TEST CASES
@@ -75,5 +147,5 @@ TEST_CASE( "Assignment" ) {
         REQUIRE( c.re() == -1 );
         REQUIRE( c.im() == -2 );
     }
-}
+};
 //------------------------------
