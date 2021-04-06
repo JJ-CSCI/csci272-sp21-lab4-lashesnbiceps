@@ -3,6 +3,17 @@
 
 ## Task: Formatting & Parsing
 
+class Complex
+{
+  public:
+  Complex() {
+    re = 0;
+    im = 0;
+}
+  private:
+  int re, im;
+}
+
 The [complex](https://en.wikipedia.org/wiki/Complex_number) number is expressed in the form **a +b*i***, where **a** and **b** are real numbers, and ***i***  represents the "imaginary unit".
 
 - Write a class that defines a complex number and use streaming operations for formatting string output and parsing.
